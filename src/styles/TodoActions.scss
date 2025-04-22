@@ -1,0 +1,32 @@
+@use "sass:color";
+
+// Variables
+$mobile-breakpoint: 768px;
+
+.todo-controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 0.25rem;
+}
+
+// Mobile styles
+@media (max-width: $mobile-breakpoint) {
+  .todo-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0;
+  }
+  
+  .control-buttons {
+    width: 100%;
+    justify-content: flex-end;
+  }
+} 

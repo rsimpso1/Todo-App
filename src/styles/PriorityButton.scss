@@ -1,0 +1,148 @@
+@use "sass:color";
+
+// Variables
+$priority-p5: #9e9e9e;  // Grey
+$priority-p4: #4CAF50;  // Green
+$priority-p3: #2196F3;  // Blue
+$priority-p2: #FF9800;  // Orange
+$priority-p1: #F44336;  // Red
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin button-base {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  @include flex-center;
+  gap: 0.5rem;
+}
+
+// Container
+.priority-button-container {
+  position: relative;
+  display: inline-block;
+}
+
+// Button
+.priority-button {
+  @include flex-center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0.5rem;
+  background-color: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  &.ghost-button {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  .priority-icon {
+    font-size: 1.25rem;
+  }
+
+  // Priority variants
+  &.priority-p5 {
+    color: $priority-p5;
+  }
+
+  &.priority-p4 {
+    color: $priority-p4;
+  }
+
+  &.priority-p3 {
+    color: $priority-p3;
+  }
+
+  &.priority-p2 {
+    color: $priority-p2;
+  }
+
+  &.priority-p1 {
+    color: $priority-p1;
+  }
+}
+
+// Dropdown
+.priority-dropdown {
+  position: fixed;
+  min-width: 150px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  animation: dropdown-appear 0.2s ease-out;
+
+  .priority-option {
+    @include button-base;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+    justify-content: flex-start;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: #f5f5f5;
+    }
+
+    &.selected {
+      background-color: #f5f5f5;
+      font-weight: 500;
+    }
+
+    .priority-label {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+  }
+}
+
+// Animation
+@keyframes dropdown-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Mobile styles
+@media (max-width: 768px) {
+  .priority-dropdown {
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 300px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+} 
